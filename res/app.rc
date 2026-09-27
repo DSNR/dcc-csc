@@ -1,0 +1,7 @@
+// Resources compiled into the .exe.
+// To add an icon: put app.ico in this folder and uncomment the next line
+// (id 1 is picked up automatically as the window icon).
+// 1 ICON "app.ico"
+
+// Enables modern-looking controls (Common Controls v6) and DPI awareness.
+1 24 "app.manifest"

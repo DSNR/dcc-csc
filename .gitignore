@@ -1,0 +1,14 @@
+# Portable toolchain (downloaded by setup.bat - not source)
+/tools/
+
+# Build output
+/build/
+
+# Editor / OS noise
+*.exe
+*.o
+*.obj
+*.res
+.vs/
+.vscode/
+*.user
