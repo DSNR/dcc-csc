@@ -74,6 +74,25 @@ driver to do so. `dcc-csc` deliberately does **not** duplicate that. Instead:
 Only complete records are ever read, so tailing a file that Wireshark is still
 writing is safe.
 
+### Knowing the traffic is really dcc's
+
+For a validation tool it matters that you are judging **the app's own tunnel**,
+not an anonymous mix of loopback packets. dcc uses random ports every session,
+so a hand-typed port filter is fragile. Instead, dcc-csc reads the OS
+port→process ownership table (the same read-only data as `netstat -ano` /
+`Get-NetTCPConnection` — it captures nothing) and labels every packet with the
+**process that owns it**, shown in the **App** column.
+
+- The **App filter** box (default `dcc,cloudflared`) matches process names.
+- **Show app traffic only** (on by default) hides everything else, and the
+  **verdict runs over exactly what the list shows** — so a PASS means dcc's own
+  traffic was clean, not "nothing bad turned up in the noise".
+
+Because of this you can capture all of loopback in Wireshark with no filter and
+still get a dcc-only judgement. (Attribution is most exact while the session is
+running: for a live *Follow* it samples continuously; for a saved file opened
+later, it uses the port table at open time.)
+
 ---
 
 ## Canaries

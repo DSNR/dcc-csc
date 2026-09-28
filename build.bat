@@ -25,7 +25,7 @@ for /r src %%f in (*.cpp) do set SRCS=!SRCS! "%%f"
 windres --include-dir res res\app.rc -O coff -o build\app.res || exit /b 1
 
 g++ %FLAGS% -Wall -Wextra -Isrc -DUNICODE -D_UNICODE %SRCS% build\app.res -o build\dcc-csc.exe ^
-    -static -lcomctl32 -lcomdlg32 -lgdi32 -luser32 || exit /b 1
+    -static -lcomctl32 -lcomdlg32 -lgdi32 -luser32 -liphlpapi || exit /b 1
 
 echo Built build\dcc-csc.exe
 if /i "%~1"=="run" start "" build\dcc-csc.exe
