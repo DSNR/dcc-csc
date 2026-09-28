@@ -175,14 +175,3 @@ The code is already structured for it: everything downstream consumes a
 path. A native capture backend (e.g. WinDivert, loaded at runtime) only has to
 produce `capture::Packet`s into that path — the parsing, analysis, UI and file
 handling stay unchanged.
-
----
-
-## The `gui::` wrapper
-
-`src/gui/` is a standalone, reusable Win32 wrapper you can build any small
-Windows app on. Widgets: `Label`, `Button`, `CheckBox`, `TextBox`
-(single/multi-line), `ListBox`, `ComboBox`, `ListView`. Window features: menus,
-timers, `message` / `error` / `ask` dialogs, open/save file dialogs, `onResize`,
-`onClose`, and `handleMessage()` for raw Win32 messages. Coordinates are 96-DPI
-logical pixels (auto-scaled for high-DPI displays); all strings are UTF-8.
